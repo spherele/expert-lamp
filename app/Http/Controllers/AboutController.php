@@ -12,7 +12,7 @@ class AboutController extends Controller
     {
         $aboutContent = About::where('active', true)->firstOrFail();
         $pageTitle = 'About';
-        $articles = Article::where('active', true)->orderBy('published_at', 'desc')->with('category')->paginate(5);
+        $articles = Article::where('active', true)->orderBy('published_at', 'desc')->with('category')->paginate(3);
 
 
         return view('about.index', compact('aboutContent', 'pageTitle', 'articles'));
