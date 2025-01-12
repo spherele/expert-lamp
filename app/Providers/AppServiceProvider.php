@@ -23,14 +23,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('*', function ($view) {
-            $view->with('socialLinks', SocialLink::all());
-        });
-
-        view()->composer('*', function ($view) {
             $list = ArticlesCategory::where('active', true)->get();
             $article = Article::get();
             $latestArticles = Article::latest('published_at')->take(3)->get();
             $articleTags = Article::whereNotNull('tags')->pluck('tags')->flatten()->unique();
+            $socialLinks = SocialLink::all();
 
             $view->with(
                 [
@@ -38,6 +35,7 @@ class AppServiceProvider extends ServiceProvider
                     'article' => $article,
                     'latestArticles' => $latestArticles,
                     'articleTags' => $articleTags,
+                    'socialLinks' => $socialLinks,
                 ]
             );
         });

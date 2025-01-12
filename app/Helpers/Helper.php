@@ -38,13 +38,9 @@ function formatDate($date, $format = 'DEFAULT', $locale = null, $useTimeFormat =
 
 
 function formatPath($filename) {
-    if (strpos($filename, '/upload/') !== false) {
-        return $filename;
-    }
-
     if (empty($filename)) {
         return '';
     }
 
-    return '/upload/' . ltrim($filename, '/');
+    return '/storage/' . ltrim($filename, '/');
 }
