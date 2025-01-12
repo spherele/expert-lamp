@@ -13,7 +13,9 @@ class About extends Model
 
     protected $fillable = [
         'title',
+        'preview_text',
         'content',
+        'preview_picture',
         'image',
         'active',
     ];

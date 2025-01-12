@@ -10,15 +10,13 @@
     <!-- END sidebar-box -->
     <div class="sidebar-box">
         <div class="bio text-center">
-            <div class="bio">
-                <div class="bio-img" style="background-image: url('{{ asset('/assets/images/person_2.jpg') }}');"></div>
+            <div class="bio" style="visibility: hidden">
+                <div class="bio-img" style="background-image: url('{{ formatPath($aboutInfo->preview_picture) }}');"></div>
             </div>
-            <img src="{{ asset('/assets/images/person_2.jpg') }}" alt="Image Placeholder" class="img-fluid">
+            <img src="{{ formatPath($aboutInfo->preview_picture) }}" alt="Image Placeholder" class="img-fluid">
             <div class="bio-body">
                 <h2>Maxim Tolkachev</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem facilis sunt
-                    repellendus excepturi beatae porro debitis voluptate nulla quo veniam fuga sit molestias
-                    minus.</p>
+                <p>{{ $aboutInfo->preview_text }}</p>
                 <p><a href="{{ route('about') }}" class="btn btn-primary btn-sm rounded">Read my bio</a></p>
                 <p class="social">
                     @foreach($socialLinks as $link)

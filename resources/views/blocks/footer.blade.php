@@ -2,12 +2,12 @@
     <div class="container">
         <div class="row mb-0">
             <div class="col-md-4">
-                <h3>About Us</h3>
+                <h3>About Me</h3>
                 <p class="mb-4">
-                    <img src="{{ asset('assets/images/img_1.jpg') }}" alt="Image placeholder" class="img-fluid">
+                    <img src="{{ formatPath($aboutInfo->preview_picture) }}" alt="{{ $aboutInfo->title }}" class="img-fluid">
                 </p>
 
-                <p>Lorem ipsum dolor sit amet sa ksal sk sa, consectetur adipisicing elit. Ipsa harum inventore reiciendis. <a href="{{ route('about') }}">Read More</a></p>
+                <p>{{ $aboutInfo->preview_text }}<a href="{{ route('about') }}"> Read More</a></p>
             </div>
             <div class="col-md-6 ml-auto">
                 <div class="row">

@@ -34,11 +34,26 @@ class AboutResource extends Resource
                 Forms\Components\TextInput::make('title')->label('Заголовок')
                     ->required()
                     ->maxLength(255),
-                FileUpload::make('image')->label('Картинка на странице')
-                    ->directory('/about')
+                Forms\Components\Grid::make()
+                ->schema([
+                    FileUpload::make('preview_picture')
+                        ->label('Картинка для анонса')
+                        ->directory('/about')
+                        ->required()
+                        ->image()
+                        ->maxSize(4096),
+
+                    FileUpload::make('image')
+                        ->label('Картинка на странице')
+                        ->directory('/about')
+                        ->required()
+                        ->image()
+                        ->maxSize(4096),
+                ]),
+                Forms\Components\TextInput::make('preview_text')->label('Текст анонса')
                     ->required()
-                    ->image()
-                    ->maxSize(4096),
+                    ->maxLength(65535)
+                    ->columnSpanFull(),
                 TinyEditor::make('content')->label('Контент')
                     ->required()
                     ->maxLength(65535)
@@ -52,10 +67,11 @@ class AboutResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')
+                Tables\Columns\TextColumn::make('title')->label('Заголовок')
                     ->searchable(),
-                Tables\Columns\ImageColumn::make('image'),
-                Tables\Columns\IconColumn::make('active')
+                Tables\Columns\ImageColumn::make('preview_picture')->label('Картинка для анонса'),
+                Tables\Columns\ImageColumn::make('image')->label('Картинка на странице'),
+                Tables\Columns\IconColumn::make('active')->label('Активность')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

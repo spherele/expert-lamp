@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\About;
 use App\Models\Article;
 use App\Models\ArticlesCategory;
 use App\Models\SocialLink;
@@ -28,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
             $latestArticles = Article::latest('published_at')->take(3)->get();
             $articleTags = Article::whereNotNull('tags')->pluck('tags')->flatten()->unique();
             $socialLinks = SocialLink::all();
+            $aboutInfo = About::where('active', true)->first();
 
             $view->with(
                 [
@@ -36,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
                     'latestArticles' => $latestArticles,
                     'articleTags' => $articleTags,
                     'socialLinks' => $socialLinks,
+                    'aboutInfo' => $aboutInfo,
                 ]
             );
         });
